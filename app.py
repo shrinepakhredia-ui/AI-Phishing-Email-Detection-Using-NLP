@@ -7,6 +7,7 @@ import streamlit as st
 import joblib
 import numpy as np
 
+from modules.threat_analysis import calculate_risk_score, get_risk_level
 from modules.data_cleaning import clean_text
 
 
@@ -115,6 +116,8 @@ if st.button("🔍 Detect Email", use_container_width=True):
 
             result = encoder.inverse_transform(prediction)[0]
 
+            risk_score, reasons = calculate_risk_score(email_text)
+
         st.divider()
 
         st.subheader("Prediction Result")
@@ -134,6 +137,33 @@ if st.button("🔍 Detect Email", use_container_width=True):
             f"{confidence:.2f}%"
 
         )
+
+        st.metric(
+            "Risk Score",
+            f"{risk_score}/100"
+        )
+        
+        risk_level = get_risk_level(risk_score)
+
+        st.subheader("Risk Classification")
+
+        st.write(risk_level)
+
+
+        st.subheader("Threat Analysis")
+
+
+        if reasons:
+
+            for reason in reasons:
+
+                st.warning(reason)
+
+        else:
+
+            st.info(
+                "No major threat indicators detected."
+            )
 
 
 
