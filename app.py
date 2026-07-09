@@ -1,19 +1,14 @@
-# ============================================================
-# Project : AI-Driven Phishing Email Detection Using NLP
-# Deployment : Streamlit
-# ============================================================
-
 import streamlit as st
 import joblib
 import numpy as np
 
 from modules.threat_analysis import calculate_risk_score, get_risk_level
+from modules.explainability import generate_explanation
+from modules.url_analysis import analyze_urls
 from modules.data_cleaning import clean_text
 
 
-# ============================================================
 # PAGE CONFIGURATION
-# ============================================================
 
 st.set_page_config(
     page_title="AI-Driven Phishing Email Detection",
@@ -22,9 +17,7 @@ st.set_page_config(
 )
 
 
-# ============================================================
 # LOAD TRAINED MODELS
-# ============================================================
 
 try:
 
@@ -41,9 +34,7 @@ except Exception as e:
     st.stop()
 
 
-# ============================================================
 # HEADER
-# ============================================================
 
 st.title("📧 AI-Driven Phishing Email Detection Using NLP")
 
@@ -58,9 +49,7 @@ Machine Learning.
 st.divider()
 
 
-# ============================================================
 # SIDEBAR
-# ============================================================
 
 st.sidebar.title("Project Information")
 
@@ -75,9 +64,7 @@ st.sidebar.write("**Language :** Python")
 st.sidebar.write("**Framework :** Streamlit")
 
 
-# ============================================================
 # EMAIL INPUT
-# ============================================================
 
 email_text = st.text_area(
 
@@ -90,9 +77,7 @@ email_text = st.text_area(
 )
 
 
-# ============================================================
 # PREDICTION
-# ============================================================
 
 if st.button("🔍 Detect Email", use_container_width=True):
 
@@ -118,6 +103,10 @@ if st.button("🔍 Detect Email", use_container_width=True):
 
             risk_score, reasons = calculate_risk_score(email_text)
 
+            explanations = generate_explanation(email_text)
+
+            url_results = analyze_urls(email_text)
+
         st.divider()
 
         st.subheader("Prediction Result")
@@ -142,7 +131,7 @@ if st.button("🔍 Detect Email", use_container_width=True):
             "Risk Score",
             f"{risk_score}/100"
         )
-        
+
         risk_level = get_risk_level(risk_score)
 
         st.subheader("Risk Classification")
@@ -165,12 +154,41 @@ if st.button("🔍 Detect Email", use_container_width=True):
                 "No major threat indicators detected."
             )
 
+        st.subheader("🤖 AI Explanation")
+
+        for item in explanations:
+            st.success("✓ " + item)
+
+        st.subheader("🌐 URL Security Analysis")
+
+        if url_results:
+
+            for item in url_results:
+
+                st.write(
+                    f"🔗 {item['url']}"
+                )
+
+                st.metric(
+                    "URL Risk Score",
+                    f"{item['score']}/100"
+                )
+
+
+                for reason in item["reasons"]:
+
+                    st.warning(reason)
+
+        else:
+
+            st.info(
+                "No URLs detected in email."
+            )
 
 
 
-# ============================================================
+
 # FOOTER
-# ============================================================
 
 st.divider()
 
