@@ -40,6 +40,12 @@ load_css()
 
 show_header()
 
+load_css()
+
+show_header()
+
+# SAMPLE EMAILS
+
 
 # SAMPLE EMAILS
 
@@ -218,12 +224,12 @@ if st.button("🛡 Analyze Email", use_container_width=True):
             st.success("🟢 Low Risk")
 
 
-        tab1, tab2, tab3, tab4 = st.tabs(
+        tab1, tab2, tab3 = st.tabs(
             [
                 "🛡 Threat Report",
                 "🤖 AI Insights",
                 "🌐 URL Intelligence",
-                "ℹ️ About"
+
             ]
         )
 
@@ -283,37 +289,6 @@ if st.button("🛡 Analyze Email", use_container_width=True):
                 st.info(
                     "No URLs detected in email."
                 )
-
-        with tab4:
-
-            st.subheader("About This Project")
-
-            st.markdown("""
-        ### AI-Driven Phishing Email Detection Using NLP
-
-        This application detects phishing emails using Natural Language Processing
-        and Machine Learning.
-
-        ### Technology Stack
-
-        - Python
-        - Streamlit
-        - Scikit-learn
-        - TF-IDF Vectorizer
-        - Neural Network
-
-        ### Key Features
-
-        - AI-based Email Classification
-        - Threat Analysis
-        - Explainable AI
-        - URL Intelligence
-        - Risk Score Generation
-
-        ### Detection Pipeline
-
-        Email ➜ Text Cleaning ➜ TF-IDF ➜ Neural Network ➜ Threat Analysis ➜ URL Intelligence ➜ Final Report
-        """)
 
 
         st.divider()

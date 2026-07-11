@@ -13,13 +13,53 @@ def load_css():
 
 def show_header():
 
-    st.title("🛡 AI-Driven Phishing Email Detection")
+    col1, col2 = st.columns([12, 1])
 
-    st.markdown("""
-Analyze suspicious emails using Artificial Intelligence,
-Natural Language Processing (NLP), and Machine Learning
-to identify phishing attacks and generate a detailed
-security assessment.
+    with col1:
+
+        st.title("🛡 AI-Driven Phishing Email Detection")
+
+        st.markdown(
+            """
+Analyze suspicious emails using **Artificial Intelligence**, **Natural Language Processing (NLP)**, and **Machine Learning** to identify phishing attacks and generate a detailed security assessment.
+"""
+        )
+
+    with col2:
+
+        with st.popover("ℹ️"):
+
+            st.markdown("""
+### 🛡 About This Project
+
+This application detects phishing emails using **Natural Language Processing (NLP)** and **Machine Learning**.
+
+---
+
+### 🚀 Technology Stack
+
+- Python
+- Streamlit
+- Scikit-learn
+- TF-IDF Vectorizer
+- Neural Network (MLPClassifier)
+- ReportLab
+
+---
+
+### ✨ Features
+
+- AI-powered Email Classification
+- Threat Indicator Analysis
+- Explainable AI
+- URL Security Analysis
+- Risk Score Generation
+- Downloadable PDF Report
 """)
 
-    st.divider()
+
+st.markdown("---")
+st.markdown(
+    "**👨‍💻 Developer:** Shrine Pakhredia\n\n"
+    "[GitHub Repository](https://github.com/shrinepakhredia-ui/AI-Phishing-Email-Detection-Using-NLP)"
+)
