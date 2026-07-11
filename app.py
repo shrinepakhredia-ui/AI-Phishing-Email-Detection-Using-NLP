@@ -40,13 +40,6 @@ load_css()
 
 show_header()
 
-load_css()
-
-show_header()
-
-# SAMPLE EMAILS
-
-
 # SAMPLE EMAILS
 
 st.subheader("🧪 Try Sample Emails")

@@ -55,11 +55,8 @@ This application detects phishing emails using **Natural Language Processing (NL
 - URL Security Analysis
 - Risk Score Generation
 - Downloadable PDF Report
+
+###  👨‍💻 Developer:** Shrine Pakhredia\n\n"
+    "[GitHub Repository](https://github.com/shrinepakhredia-ui/AI-Phishing-Email-Detection-Using-NLP)"
 """)
 
-
-st.markdown("---")
-st.markdown(
-    "**👨‍💻 Developer:** Shrine Pakhredia\n\n"
-    "[GitHub Repository](https://github.com/shrinepakhredia-ui/AI-Phishing-Email-Detection-Using-NLP)"
-)
