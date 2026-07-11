@@ -1,74 +1,275 @@
-/* Main App Container */
+/* GLOBAL*/
+
+.stApp{
+    background:#0e0e0e;
+}
 
 .block-container{
-    max-width:1200px;
-    padding-top:2rem;
+    max-width:1150px;
+    padding-top:1.6rem;
     padding-bottom:2rem;
 }
 
 
-/* Buttons */
+/* HEADINGS*/
 
-.stButton > button{
+h1{
+    font-size:2.3rem !important;
+    font-weight:800 !important;
+    letter-spacing:-0.5px;
+    color:#111827;
+}
 
-    width:100%;
-    height:55px;
+h2{
+    font-weight:700 !important;
+    color:#111827;
+}
 
-    border-radius:12px;
+h3{
+    font-weight:650 !important;
+    color:#1F2937;
+}
 
-    font-size:17px;
-
-    font-weight:600;
+p{
+    color:#757d88;
 }
 
 
-/* Text Area */
+/* TEXT AREA */
 
 textarea{
 
-    border-radius:12px !important;
+    border-radius:16px !important;
+
+    border:1px solid #D1D5DB !important;
+
+    font-size:15px !important;
+
+    padding:16px !important;
+
+    transition:.25s;
+}
+
+textarea:focus{
+
+    border:1px solid #2563EB !important;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15) !important;
 }
 
 
-/* Metric Cards */
+/* BUTTONS */
 
-[data-testid="metric-container"]{
+.stButton>button{
 
-    background:#fafafa;
+    width:100%;
 
-    border:1px solid #E5E7EB;
+    height:52px;
 
-    border-radius:15px;
+    border:none;
 
-    padding:20px;
+    border-radius:14px;
 
-    box-shadow:0px 2px 8px rgba(0,0,0,0.05);
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    cursor:pointer;
+}
+
+.stButton>button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
 
-/* Tabs */
+/* Download Button */
 
-button[data-baseweb="tab"]{
+.stDownloadButton>button{
+
+    width:100%;
+
+    height:55px;
+
+    border-radius:14px;
 
     font-size:16px;
 
-    font-weight:600;
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.stDownloadButton>button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
 
-/* Notification Boxes */
+/* METRIC CARDS */
+
+[data-testid="metric-container"]{
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 6px 18px rgba(15,23,42,.05);
+
+    transition:.25s;
+}
+
+[data-testid="metric-container"]:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 30px rgba(15,23,42,.10);
+}
+
+
+/* TABS */
+
+button[data-baseweb="tab"]{
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    font-size:15px;
+
+    padding:12px 22px;
+
+    transition:.25s;
+}
+
+button[data-baseweb="tab"]:hover{
+
+    background:#EEF4FF;
+}
+
+button[data-baseweb="tab"][aria-selected="true"]{
+
+    background:#031f5c !important;
+
+    color:white !important;
+}
+
+
+/*ALERT BOXES */
 
 div[data-baseweb="notification"]{
+
+    border-radius:14px;
+
+    border:none;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+
+/* PROGRESS BAR */
+
+.stProgress{
+
+    margin-top:10px;
+
+    margin-bottom:8px;
+}
+
+
+/* CAPTION */
+
+[data-testid="stCaptionContainer"]{
+
+    font-size:14px;
+
+    color:#6B7280;
+}
+
+
+/* DIVIDER */
+
+hr{
+
+    margin:24px 0;
+
+    border:none;
+
+    border-top:1px solid #E5E7EB;
+}
+
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+
+    width:9px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F3F4F6;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94A3B8;
+}
+
+
+/* LINKS */
+
+a{
+
+    color:#2563EB;
+
+    text-decoration:none;
+}
+
+a:hover{
+
+    text-decoration:underline;
+}
+
+
+/* IMAGE */
+
+img{
 
     border-radius:12px;
 }
 
 
-/* Divider */
+/* REMOVE STREAMLIT BRANDING */
 
-hr{
+footer{
 
-    margin-top:30px;
+    visibility:hidden;
+}
 
-    margin-bottom:30px;
+#MainMenu{
+
+    visibility:hidden;
+}
+
+header{
+
+    visibility:hidden;
 }

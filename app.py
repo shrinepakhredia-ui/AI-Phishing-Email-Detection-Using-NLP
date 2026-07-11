@@ -41,8 +41,61 @@ load_css()
 show_header()
 
 
+# SAMPLE EMAILS
 
-st.divider()
+st.subheader("🧪 Try Sample Emails")
+
+safe_email = """
+Hello John,
+
+Your meeting with the development team is scheduled for tomorrow at 11:00 AM.
+
+Please find the attached agenda and let me know if any changes are required.
+
+Best Regards,
+HR Department
+"""
+
+phishing_email = """
+Dear Customer,
+
+Your account has been suspended due to unusual activity.
+
+Please verify your account immediately by clicking the link below:
+
+http://secure-login-update.com
+
+Failure to verify within 24 hours will permanently suspend your account.
+
+Regards,
+Security Team
+"""
+
+if "sample_email" not in st.session_state:
+    st.session_state.sample_email = ""
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+
+    if st.button("🟢 Safe", use_container_width=True):
+
+        st.session_state.sample_email = safe_email
+
+with col2:
+
+    if st.button("🔴 Phishing", use_container_width=True):
+
+        st.session_state.sample_email = phishing_email
+
+with col3:
+
+    if st.button("🗑 Clear", use_container_width=True):
+
+        st.session_state.sample_email = ""
+
+        st.rerun()
+
 
 # EMAIL INPUT
 
@@ -50,11 +103,23 @@ st.subheader("📧 Email Content")
 
 email_text = st.text_area(
     "",
-    height=280,
+    value=st.session_state.sample_email,
+    height=200,
     placeholder="Paste the email content here for security analysis..."
 )
 
+col1, col2 = st.columns(2)
+
+with col1:
+    st.caption(f"📝 Characters: **{len(email_text)}**")
+
+with col2:
+    st.caption(f"📖 Words: **{len(email_text.split())}**")
+
+st.markdown("---")
 # PREDICTION
+
+st.caption("Click the button below to perform AI-powered phishing analysis.")
 
 if st.button("🛡 Analyze Email", use_container_width=True):
 
@@ -100,16 +165,15 @@ if st.button("🛡 Analyze Email", use_container_width=True):
 
         st.divider()
 
-        st.subheader("Prediction Result")
+        st.subheader("🧾 Analysis Summary")
 
         if result == "Safe Email":
 
-            st.success("✅ Safe Email")
+            st.success("## ✅ Safe Email Detected")
 
         else:
 
-            st.error("🚨 Phishing Email")
-
+            st.error("## 🚨 Phishing Email Detected")
 
         col1, col2, col3 = st.columns(3)
 
@@ -118,20 +182,28 @@ if st.button("🛡 Analyze Email", use_container_width=True):
                 "🎯 Confidence",
                 f"{confidence:.2f}%"
             )
-            st.progress(confidence / 100)
+            st.progress(confidence / 100, text="Model Confidence")
 
         with col2:
             st.metric(
                 "⚠ Risk Score",
                 f"{risk_score}/100"
             )
-            st.progress(risk_score / 100)
+            st.progress(risk_score / 100, text="Threat Severity")
 
         with col3:
             st.metric(
                 "🛡 Risk Level",
                 risk_level
             )
+        if risk_score >= 75:
+            st.error("🔴 High Risk")
+
+        elif risk_score >= 40:
+            st.warning("🟡 Medium Risk")
+
+        else:
+            st.success("🟢 Low Risk")
 
 
         tab1, tab2, tab3, tab4 = st.tabs(
@@ -234,7 +306,7 @@ if st.button("🛡 Analyze Email", use_container_width=True):
 
         st.divider()
 
-        st.subheader("💡 Security Recommendation")
+        st.subheader("🛡 Recommended Action")
 
         if result == "Safe Email":
 
