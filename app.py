@@ -103,8 +103,7 @@ st.subheader("📧 Email Content")
 
 email_text = st.text_area(
     "",
-    value=st.session_state.sample_email,
-    height=200,
+    height=280,
     placeholder="Paste the email content here for security analysis..."
 )
 
