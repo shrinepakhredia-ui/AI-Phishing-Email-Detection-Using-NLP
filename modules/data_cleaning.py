@@ -7,27 +7,31 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 
-try:
-    nltk.data.find("corpora/stopwords")
-except LookupError:
-    nltk.download("stopwords")
+# Download required NLTK resources (if not already available)
 
-try:
-    nltk.data.find("corpora/wordnet")
-except LookupError:
-    nltk.download("wordnet")
+for resource in ["stopwords", "wordnet", "omw-1.4"]:
 
-try:
-    nltk.data.find("corpora/omw-1.4")
-except LookupError:
-    nltk.download("omw-1.4")
+    try:
+
+        if resource == "stopwords":
+            nltk.data.find("corpora/stopwords")
+
+        elif resource == "wordnet":
+            nltk.data.find("corpora/wordnet")
+
+        else:
+            nltk.data.find("corpora/omw-1.4")
+
+    except LookupError:
+
+        nltk.download(resource, quiet=True)
 
 
 # Initialize NLP Resources
 
 stop_words = set(stopwords.words("english"))
-lemmatizer = WordNetLemmatizer()
 
+lemmatizer = WordNetLemmatizer()
 
 # Clean Single Email
 
