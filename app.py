@@ -93,18 +93,31 @@ with col3:
     if st.button("🗑 Clear", use_container_width=True):
 
         st.session_state.sample_email = ""
+        st.session_state.email_text = ""
 
         st.rerun()
 
 
 # EMAIL INPUT
 
+
 st.subheader("📧 Email Content")
 
+# Initialize session state for email text
+if "email_text" not in st.session_state:
+    st.session_state.email_text = ""
+
+# Copy sample email into text area
+if st.session_state.sample_email:
+    st.session_state.email_text = st.session_state.sample_email
+    st.session_state.sample_email = ""
+
 email_text = st.text_area(
-    "",
+    "Email Content",
+    key="email_text",
     height=280,
-    placeholder="Paste the email content here for security analysis..."
+    placeholder="Paste the email content here for security analysis...",
+    label_visibility="collapsed"
 )
 
 col1, col2 = st.columns(2)
